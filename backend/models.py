@@ -1,19 +1,22 @@
 from pydantic import BaseModel
 from typing import Optional
 
+class StudentQRData(BaseModel):
+    student_id: str
+
 class PaymentRequest(BaseModel):
-    amount: float
     vendor_id: str
+    amount: float
 
 class WalletRechargeRequest(BaseModel):
-    amount: float
     student_id: str
+    vendor_id: str
+    amount: float
 
 class VerifyPayment(BaseModel):
     order_id: str
     razorpay_payment_id: str
     razorpay_signature: str
-    vendor_id: str
 
 class StudentPaymentRequest(BaseModel):
     student_id: str
@@ -21,5 +24,8 @@ class StudentPaymentRequest(BaseModel):
     amount: float
     description: Optional[str] = None
 
-class StudentQRData(BaseModel):
-    student_id: str
+class VendorResponse(BaseModel):
+    vendor_id: str
+    name: str
+    upi_id: str
+    balance: float
